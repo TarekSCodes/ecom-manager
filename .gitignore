@@ -1,0 +1,74 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #Paketdateien
+*.jar
+*.war
+*.ear
+
+# Bytecode cache for JSPs
+*.jcls
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Project output directories
+bin/
+target/
+build/
+out/
+
+# IntelliJ IDEA related files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans related files
+nbproject/
+build/
+dist/
+nbdist/
+
+# Eclipse related files
+.metadata/
+.plugins/
+.settings/
+.project
+.classpath
+
+# Temporary files created by developers
+*.swp
+*~
+*.bak
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Gradle files
+.gradle
+/build
+
+# Maven files
+.mvn/local-repo/
+target/
+
+# JavaFX spezifische Dateien (falls vorhanden)
+*.jnlp # Java Network Launching Protocol (kann ignoriert werden)
+
+# Konfigurationsdateien (können je nach Projekt variieren)
+*.properties # Wenn sensible Daten enthalten sind
+
+# IDE-spezifische Konfigurationen (VS Code)
+.vscode/
+
+# Sonstige temporäre Dateien
+*.orig
+*.rej
+*.patch
