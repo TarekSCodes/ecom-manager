@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox spacing="10.0" styleClass="mainMenu" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.MenuController">
+
+         <children>
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#switchToHome" styleClass="mainMenu-button" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-home" iconSize="16" />
+               </graphic>
+               <text>Startseite</text>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="secondaryButton" mnemonicParsing="false" onAction="#switchToArticles" styleClass="mainMenu-button" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-box" iconSize="16" />
+               </graphic>
+               <text>Artikel</text>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
+            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
+            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
+            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         
+      </VBox>
