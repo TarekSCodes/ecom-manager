@@ -3,6 +3,7 @@ package io.github.tarekscodes.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class SupplierController {
     @FXML
@@ -24,7 +25,10 @@ public class SupplierController {
     private TableColumn<?, ?> emailColumn;
 
     @FXML
+    private TextField supplierNameField;
+
+    @FXML
     private void initialize() {
-        // Hier kommt später die Initialisierungslogik
+        
     }
 } 

@@ -1,6 +1,7 @@
 module io.github.tarekscodes {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
+    requires org.controlsfx.controls;
 
     requires javafx.controls;
     requires javafx.fxml;
