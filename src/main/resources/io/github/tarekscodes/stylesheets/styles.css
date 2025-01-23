@@ -1,7 +1,11 @@
+/*  Main Menu Styles  */
+
 .mainMenu-button {
     -fx-background-color: #1995AD;
     background-color: #1995AD;
     -fx-text-fill: #F1F1F2;
+    -fx-font-size: 16px;
+    font-size: 16px;
     -fx-pref-width: 100%;
     -fx-min-width: 100%;
     -fx-max-width: Infinity;
@@ -13,6 +17,11 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     border-radius: 0;
+    -fx-content-display: top;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-line-spacing: -5px;
 }
 
 .mainMenu {
@@ -27,10 +36,12 @@
 }
 
 .mainMenu :hover {
-    -fx-background-color: #A1D6E2;
-    background-color: #A1D6E2;
-    -fx-text-fill: #BCBABE;
+    -fx-background-color: #2F9FB5;
+    background-color: #2F9FB5;
+    -fx-text-fill: #F1F1F2;
 }
+
+/*  Main Content Styles  */
 
 .mainContent {
     -fx-padding: 20px;
@@ -47,8 +58,10 @@
     border-color: #BCBABE;
     -fx-pref-height: 400px;
     -fx-min-height: 200px;
+    min-height: 200px;
     -fx-pref-width: 100%;
     -fx-min-width: 100%;
+    min-width: 100%;
 }
 
 .articleTable .column {

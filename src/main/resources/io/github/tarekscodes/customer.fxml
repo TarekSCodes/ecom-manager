@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox styleClass="customer-container, mainContent" stylesheets="@stylesheets/styles.css"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="io.github.tarekscodes.controller.CustomerController">
+
+    <TableView fx:id="customerTable" VBox.vgrow="ALWAYS" styleClass="articleTable">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="firstNameColumn" text="Vorname" />
+            <TableColumn fx:id="lastNameColumn" text="Nachname" />
+            <TableColumn fx:id="addressColumn" text="Adresse" />
+            <TableColumn fx:id="phoneColumn" text="Telefon" />
+            <TableColumn fx:id="emailColumn" text="E-Mail" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+
+</VBox> 

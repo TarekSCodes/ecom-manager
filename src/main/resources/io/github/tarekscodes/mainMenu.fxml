@@ -9,26 +9,54 @@
 <VBox spacing="10.0" styleClass="mainMenu" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.MenuController">
 
          <children>
+
+            <!-- Home Button -->
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#switchToHome" styleClass="mainMenu-button" textAlignment="CENTER">
                <graphic>
-                  <FontIcon iconLiteral="fas-home" iconSize="16" />
+                  <FontIcon iconLiteral="fas-home" iconSize="30" iconColor="#F1F1F2" />
                </graphic>
-               <text>Startseite</text>
+               <text>Dashboard</text>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+
+            <!-- Article Button -->
             <Button fx:id="articleButton" mnemonicParsing="false" onAction="#switchToArticle" styleClass="mainMenu-button" textAlignment="CENTER">
                <graphic>
-                  <FontIcon iconLiteral="fas-box" iconSize="16" />
+                  <FontIcon iconLiteral="fas-box" iconSize="30" iconColor="#F1F1F2" />
                </graphic>
                <text>Artikel</text>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
-            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
-            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
-            <Button mnemonicParsing="false" styleClass="mainMenu-button" text="Button" />
+
+            <!-- Supplier Button -->
+            <Button fx:id="supplierButton" mnemonicParsing="false" onAction="#switchToSupplier" styleClass="mainMenu-button" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-truck" iconSize="30" iconColor="#F1F1F2" />
+               </graphic>
+               <text>Lieferanten</text>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+
+            <!-- Customer Button -->
+            <Button fx:id="customerButton" mnemonicParsing="false" onAction="#switchToCustomer" styleClass="mainMenu-button" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconLiteral="fas-user" iconSize="30" iconColor="#F1F1F2" />
+               </graphic>
+               <text>Kunden</text>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+   
+
          </children>
+
          <padding>
             <Insets top="10.0" />
          </padding>
