@@ -11,8 +11,8 @@ public class MenuController {
     }
 
     @FXML
-    private void switchToArticles() throws IOException {
-        App.setCenter("articles");
+    private void switchToArticle() throws IOException {
+        App.setCenter("article");
     }
 }
 

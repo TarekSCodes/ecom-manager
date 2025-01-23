@@ -21,13 +21,15 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         mainLayout = new BorderPane();
-        scene = new Scene(mainLayout, 1000, 600);
+        scene = new Scene(mainLayout);
         scene.getStylesheets().add(App.class.getResource("stylesheets/styles.css").toExternalForm());
         
         VBox menu = FXMLLoader.load(App.class.getResource("mainMenu.fxml"));
         mainLayout.setLeft(menu);
-        
         setCenter("home");
+
+        stage.setMinWidth(1000);
+        stage.setMinHeight(600);
         
         stage.setScene(scene);
         stage.show();

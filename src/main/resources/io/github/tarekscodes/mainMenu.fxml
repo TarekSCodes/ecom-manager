@@ -18,7 +18,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="secondaryButton" mnemonicParsing="false" onAction="#switchToArticles" styleClass="mainMenu-button" textAlignment="CENTER">
+            <Button fx:id="articleButton" mnemonicParsing="false" onAction="#switchToArticle" styleClass="mainMenu-button" textAlignment="CENTER">
                <graphic>
                   <FontIcon iconLiteral="fas-box" iconSize="16" />
                </graphic>

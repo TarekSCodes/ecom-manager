@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import io.github.tarekscodes.App;
 
-public class ArticlesController {
+public class ArticleController {
 
     @FXML
     private void switchToHome() throws IOException {
