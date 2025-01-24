@@ -2,6 +2,7 @@ package io.github.tarekscodes;
 
 import java.io.IOException;
 
+import io.github.tarekscodes.db.DBConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,13 +14,22 @@ import javafx.stage.Stage;
 /**
  * JavaFX App
  */
-public class App extends Application {
+
+// TODO:
+// 1. Datenbank import, export mittles .json
+// 
+
+
+ public class App extends Application {
 
     private static Scene scene;
     private static BorderPane mainLayout;
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        DBConnector.connect();
+
         mainLayout = new BorderPane();
         scene = new Scene(mainLayout);
         scene.getStylesheets().add(App.class.getResource("stylesheets/styles.css").toExternalForm());

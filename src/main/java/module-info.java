@@ -2,6 +2,8 @@ module io.github.tarekscodes {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
     requires org.controlsfx.controls;
+    requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
     requires javafx.controls;
     requires javafx.fxml;

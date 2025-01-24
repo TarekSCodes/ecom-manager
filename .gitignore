@@ -72,3 +72,6 @@ target/
 *.orig
 *.rej
 *.patch
+
+# SQLite Datenbank
+ecom_manager.db
