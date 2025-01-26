@@ -14,12 +14,6 @@ import javafx.stage.Stage;
 /**
  * JavaFX App
  */
-
-// TODO:
-// 1. Datenbank import, export mittles .json
-// 
-
-
  public class App extends Application {
 
     private static Scene scene;
@@ -61,5 +55,4 @@ import javafx.stage.Stage;
     public static void main(String[] args) {
         launch();
     }
-
 }

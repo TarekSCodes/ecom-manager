@@ -1,11 +1,16 @@
 package io.github.tarekscodes.db;
 
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.nio.file.Path;
 
 public class DBConnector {
+
+    // TODO:
+    // 1. Datenbank import, export mittles .json
+    // 2. Implementierung eines Connection-Pools
+
 
     /**
      * Gibt den absoluten Pfad zur SQLite-Datenbank als JDBC-URL zurück.

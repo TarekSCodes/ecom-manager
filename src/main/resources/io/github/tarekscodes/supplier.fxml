@@ -31,42 +31,42 @@
             
             <VBox spacing="5.0" GridPane.columnIndex="2">
                <Label styleClass="input-label" text="PLZ" />
-               <TextField styleClass="text-input" />
+               <TextField fx:id="plzField" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="Lieferanten Nr." />
-               <TextField styleClass="text-input" />
+               <TextField fx:id="supplierNumberField" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="Stadt" />
-               <ComboBox styleClass="combo-box" />
+               <ComboBox fx:id="cityField" styleClass="combo-box" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Land" />
-               <ComboBox styleClass="combo-box" />
+               <ComboBox fx:id="countryField" styleClass="combo-box" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="1">
                <Label styleClass="input-label" text="Telefon Nr." />
-               <TextField styleClass="text-input" />
+               <TextField fx:id="phoneNumberField" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="E-Mail-Adresse" />
-               <TextField styleClass="text-input" />
+               <TextField fx:id="emailField" styleClass="text-input" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Status" />
-               <ChoiceBox styleClass="combo-box" />
+               <ChoiceBox fx:id="statusField" styleClass="combo-box" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Kategorie" />
-               <ComboBox styleClass="combo-box" />
+               <ComboBox fx:id="categoryField" styleClass="combo-box" />
             </VBox>
 
          </children>
