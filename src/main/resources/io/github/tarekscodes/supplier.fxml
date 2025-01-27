@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierController">
+<VBox styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierController">
    
    <VBox spacing="20.0">
       <padding>
@@ -26,17 +34,17 @@
          <children>
             <VBox spacing="5.0">
                <Label styleClass="input-label" text="Lieferantenname" />
-               <TextField fx:id="supplierNameField" styleClass="text-input" />
+               <TextField fx:id="supplierNameField" onAction="#readTextFields" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="2">
                <Label styleClass="input-label" text="PLZ" />
-               <TextField fx:id="plzField" styleClass="text-input" />
+               <TextField fx:id="plzField" onAction="#readTextFields" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="Lieferanten Nr." />
-               <TextField fx:id="supplierNumberField" styleClass="text-input" />
+               <TextField fx:id="supplierNumberField" onAction="#readTextFields" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -51,12 +59,12 @@
             
             <VBox spacing="5.0" GridPane.columnIndex="1">
                <Label styleClass="input-label" text="Telefon Nr." />
-               <TextField fx:id="phoneNumberField" styleClass="text-input" />
+               <TextField fx:id="phoneNumberField" onAction="#readTextFields" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="E-Mail-Adresse" />
-               <TextField fx:id="emailField" styleClass="text-input" />
+               <TextField fx:id="emailField" onAction="#readTextFields" styleClass="text-input" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -66,7 +74,7 @@
 
             <VBox spacing="5.0" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Kategorie" />
-               <ComboBox fx:id="categoryField" styleClass="combo-box" />
+               <ComboBox fx:id="categoryField" onAction="#readTextFields" styleClass="combo-box" />
             </VBox>
 
          </children>
