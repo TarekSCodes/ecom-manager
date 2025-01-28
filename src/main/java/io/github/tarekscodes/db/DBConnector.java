@@ -3,6 +3,7 @@ package io.github.tarekscodes.db;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBConnector {
@@ -28,6 +29,15 @@ public class DBConnector {
             System.out.println("Verbindung zur Datenbank hergestellt");
         } catch (SQLException e) {
             System.out.println("Fehler beim Verbinden mit der Datenbank: " + e.getMessage());
+        }
+    }
+
+    public static void executeQuery(String query) {
+        try (Connection conn = DriverManager.getConnection(getDBPath())) {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Ausführen der Query: " + e.getMessage());
         }
     }
 }

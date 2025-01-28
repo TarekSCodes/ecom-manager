@@ -34,47 +34,47 @@
          <children>
             <VBox spacing="5.0">
                <Label styleClass="input-label" text="Lieferantenname" />
-               <TextField fx:id="supplierNameField" onAction="#readTextFields" styleClass="text-input" />
+               <TextField fx:id="supplierNameField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="2">
                <Label styleClass="input-label" text="PLZ" />
-               <TextField fx:id="plzField" onAction="#readTextFields" styleClass="text-input" />
+               <TextField fx:id="supplierplzField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="Lieferanten Nr." />
-               <TextField fx:id="supplierNumberField" onAction="#readTextFields" styleClass="text-input" />
+               <TextField fx:id="supplierNumberField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="Stadt" />
-               <ComboBox fx:id="cityField" styleClass="combo-box" />
+               <ComboBox fx:id="suppliercityField" styleClass="combo-box" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Land" />
-               <ComboBox fx:id="countryField" styleClass="combo-box" />
+               <ComboBox fx:id="suppliercountryField" styleClass="combo-box" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="1">
                <Label styleClass="input-label" text="Telefon Nr." />
-               <TextField fx:id="phoneNumberField" onAction="#readTextFields" styleClass="text-input" />
+               <TextField fx:id="supplierphoneNumberField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
             </VBox>
             
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <Label styleClass="input-label" text="E-Mail-Adresse" />
-               <TextField fx:id="emailField" onAction="#readTextFields" styleClass="text-input" />
+               <TextField fx:id="supplierEmailField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Status" />
-               <ChoiceBox fx:id="statusField" styleClass="combo-box" />
+               <ChoiceBox fx:id="supplierStatusField" styleClass="combo-box" />
             </VBox>
 
             <VBox spacing="5.0" GridPane.rowIndex="2">
                <Label styleClass="input-label" text="Kategorie" />
-               <ComboBox fx:id="categoryField" onAction="#readTextFields" styleClass="combo-box" />
+               <ComboBox fx:id="supplierCategoryField" onAction="#readTextFields" styleClass="combo-box" />
             </VBox>
 
          </children>
