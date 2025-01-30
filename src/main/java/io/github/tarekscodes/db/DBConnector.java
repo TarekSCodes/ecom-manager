@@ -24,7 +24,7 @@ public class DBConnector {
      * 
      * @return JDBC-URL als String im Format "jdbc:sqlite:/absoluter/pfad/zur/datenbank.db"
      */
-    private static final String getDBPath() {
+    private static String getDBPath() {
         Path dbPath = Path.of("src", "main", "java", "io", "github", "tarekscodes", "db", "ecom_manager.db").toAbsolutePath();
         return "jdbc:sqlite:" + dbPath.toString();
     }
@@ -46,21 +46,26 @@ public class DBConnector {
         }
     }
 
+    /**
+     * Ruft alle Lieferanten aus der Datenbank ab und gibt sie als Liste zurück.
+     * Die Methode führt eine SQL-Abfrage aus, die den Namen und die Nummer jedes Lieferanten
+     * aus der 'supplier' Tabelle abruft.
+     * 
+     * @return Eine Liste von SupplierDTO-Objekten, die alle Lieferanten repräsentiert.
+     *         Falls keine Lieferanten gefunden werden oder ein Datenbankfehler
+     *         auftritt, wird eine leere Liste zurückgegeben.
+     * @see SupplierDTO
+     */
     public static List<SupplierDTO> getAllSupplier() {
         String getAllSupplierString = "SELECT supplierName, supplierNumber FROM supplier";
         List<SupplierDTO> supplierList = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(getDBPath());
              PreparedStatement pstmt = conn.prepareStatement(getAllSupplierString);
-             ResultSet rs = pstmt.executeQuery(); 
+             ResultSet rs = pstmt.executeQuery();
             ) {
 
             while (rs.next()) {
-                
-                /*
-                 * TODO: Daten jeder Zeile auslesen, in einer List (HashMap?) speichern
-                 * und return
-                 */
 
                 SupplierDTO supplier = new SupplierDTO();
                 supplier.setSupplierName(rs.getString("supplierName"));

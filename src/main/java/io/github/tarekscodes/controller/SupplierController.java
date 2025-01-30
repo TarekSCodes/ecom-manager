@@ -38,7 +38,7 @@ public class SupplierController {
     // TODO: ComboBoxen initialisieren
 
     @FXML
-    private void initialize() {
+    public void initialize() {
 
         // Hier wird die ChoiceBox für den Status der Lieferanten initialisiert
         supplierStatusField.getItems().addAll("Beliebig", "Aktiv", "Inaktiv");
@@ -51,7 +51,7 @@ public class SupplierController {
      * @param event Das KeyEvent, das ausgelöst wurde.
      */
     @FXML
-    private void handleTabOrder(KeyEvent event) {
+    public void handleTabOrder(KeyEvent event) {
         TextField currentField = (TextField) event.getSource();
 
         // TODO: ComboBoxen und Choiceboxen integrieren in die Tab-Order
@@ -77,7 +77,7 @@ public class SupplierController {
      * @param event Das ActionEvent, das ausgelöst wurde, als die Aktion ausgeführt wurde.
      */
     @FXML
-    private void readTextFields(ActionEvent event) {
+    public void readTextFields(ActionEvent event) {
         
         SupplierDTO supplier = new SupplierDTO();
         supplier.setSupplierName(supplierNameField.getText());
@@ -130,9 +130,11 @@ public class SupplierController {
         System.out.println(query.toString());
     }
 
-    // TODO:
-    // 2. Implementierung der Methode zum Laden der Supplier-Daten in die Tabelle
-
+    /**
+     * Lädt alle Lieferanten aus der Datenbank und bindet die Spalten 'Name' und 'Lieferantennummer'
+     * an die entsprechenden Properties des SupplierDTO-Objekts.
+     * Die Daten werden über den DBConnector abgerufen und in einer ObservableList gespeichert.
+     */
     private void initializeSuppliersTable() {
     
         List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) DBConnector.getAllSupplier();
