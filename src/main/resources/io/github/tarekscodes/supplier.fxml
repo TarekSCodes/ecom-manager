@@ -82,7 +82,7 @@
       
       <TableView fx:id="supplierTable" styleClass="articleTable" VBox.vgrow="ALWAYS">
          <columns>
-            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="supplierNumberColumn" text="Nummer" />
             <TableColumn fx:id="nameColumn" text="Name" />
             <TableColumn fx:id="addressColumn" text="Adresse" />
             <TableColumn fx:id="phoneColumn" text="Telefon" />

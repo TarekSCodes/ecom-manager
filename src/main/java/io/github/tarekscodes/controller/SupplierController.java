@@ -1,6 +1,12 @@
 package io.github.tarekscodes.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.github.tarekscodes.db.DBConnector;
 import io.github.tarekscodes.models.SupplierDTO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -8,13 +14,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class SupplierController {
-    @FXML private TableView<?> supplierTable;
-    @FXML private TableColumn<?, ?> idColumn;
-    @FXML private TableColumn<?, ?> nameColumn;
+    @FXML private TableView<SupplierDTO> supplierTable;
+    @FXML private TableColumn<SupplierDTO, String> supplierNumberColumn;
+    @FXML private TableColumn<SupplierDTO, String> nameColumn;
     @FXML private TableColumn<?, ?> addressColumn;
     @FXML private TableColumn<?, ?> phoneColumn;
     @FXML private TableColumn<?, ?> emailColumn;
@@ -36,6 +43,7 @@ public class SupplierController {
         // Hier wird die ChoiceBox für den Status der Lieferanten initialisiert
         supplierStatusField.getItems().addAll("Beliebig", "Aktiv", "Inaktiv");
         supplierStatusField.setValue("Beliebig");
+        initializeSuppliersTable();
     }
 
     /**
@@ -73,14 +81,14 @@ public class SupplierController {
         
         SupplierDTO supplier = new SupplierDTO();
         supplier.setSupplierName(supplierNameField.getText());
-        supplier.setSupplierPLZ(supplierplzField.getText());
+        supplier.setSupplierPostalCode(supplierplzField.getText());
         supplier.setSupplierNumber(supplierNumberField.getText());
-        supplier.setSuppliercity(suppliercityField.getValue());
+        supplier.setSupplierCity(suppliercityField.getValue());
         supplier.setSupplierCountry(suppliercountryField.getValue());
-        supplier.setSupplierPhoneNumber(supplierphoneNumberField.getText());
-        supplier.setSupplierEmail(supplierEmailField.getText());
+        //supplier.setSupplierPhoneNumber(supplierphoneNumberField.getText());
+        //supplier.setSupplierEmail(supplierEmailField.getText());
         supplier.setSupplierStatus(supplierStatusField.getValue());
-        supplier.setSupplierCategory(supplierCategoryField.getValue());
+        //supplier.setSupplierCategory(supplierCategoryField.getValue());
 
         generateSQLQuery(supplier);
     }
@@ -94,18 +102,18 @@ public class SupplierController {
         if (!supplier.getSupplierName().trim().isEmpty()) {
             query.append(" AND supplierName = '" + supplier.getSupplierName().trim() + "'");
         }
-        if (!supplier.getSupplierPhoneNumber().trim().isEmpty()) {
-            query.append(" AND supplierPhoneNumber" + " Like " + "'%" + supplier.getSupplierPhoneNumber().trim() + "%'");
-        }
-        if (!supplier.getSupplierPLZ().trim().isEmpty()) {
-            query.append(" AND supplierPLZ" + " Like " + "'%" + supplier.getSupplierPLZ().trim() + "%'");
+        // if (!supplier.getSupplierPhoneNumber().trim().isEmpty()) {
+        //     query.append(" AND supplierPhoneNumber" + " Like " + "'%" + supplier.getSupplierPhoneNumber().trim() + "%'");
+        // }
+        if (!supplier.getSupplierPostalCode().trim().isEmpty()) {
+            query.append(" AND supplierPLZ" + " Like " + "'%" + supplier.getSupplierPostalCode().trim() + "%'");
         }
         if (!supplier.getSupplierNumber().trim().isEmpty()) {
             query.append(" AND supplierNumber" + " Like " + "'%" + supplier.getSupplierNumber().trim() + "%'");
         }
-        if (!supplier.getSupplierEmail().trim().isEmpty()) {
-            query.append(" AND supplierEmail" + " Like " + "'%" + supplier.getSupplierEmail().trim() + "%'");
-        }
+        // if (!supplier.getSupplierEmail().trim().isEmpty()) {
+        //     query.append(" AND supplierEmail" + " Like " + "'%" + supplier.getSupplierEmail().trim() + "%'");
+        // }
         /* if (!supplier.getSuppliercity().trim().isEmpty()) {
             query.append(" AND suppliercity" + " Like " + "'%" + supplier.getSuppliercity().trim() + "%'");
         }
@@ -125,4 +133,15 @@ public class SupplierController {
     // TODO:
     // 2. Implementierung der Methode zum Laden der Supplier-Daten in die Tabelle
 
+    private void initializeSuppliersTable() {
+    
+        List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) DBConnector.getAllSupplier();
+
+        ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList(supplier);
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
+        supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<>("supplierNumber"));
+    
+        supplierTable.setItems(observableSupplierList);
+    }
 }

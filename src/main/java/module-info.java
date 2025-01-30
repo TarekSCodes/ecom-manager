@@ -12,5 +12,6 @@ module io.github.tarekscodes {
 
     opens io.github.tarekscodes to javafx.fxml;
     opens io.github.tarekscodes.controller to javafx.fxml;
+    opens io.github.tarekscodes.models to javafx.base;
     exports io.github.tarekscodes;
 }

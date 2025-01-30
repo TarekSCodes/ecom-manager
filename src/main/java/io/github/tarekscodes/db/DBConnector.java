@@ -4,7 +4,12 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.github.tarekscodes.models.SupplierDTO;
 
 public class DBConnector {
 
@@ -39,5 +44,35 @@ public class DBConnector {
         } catch (SQLException e) {
             System.out.println("Fehler beim Ausführen der Query: " + e.getMessage());
         }
+    }
+
+    public static List<SupplierDTO> getAllSupplier() {
+        String getAllSupplierString = "SELECT supplierName, supplierNumber FROM supplier";
+        List<SupplierDTO> supplierList = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(getDBPath());
+             PreparedStatement pstmt = conn.prepareStatement(getAllSupplierString);
+             ResultSet rs = pstmt.executeQuery(); 
+            ) {
+
+            while (rs.next()) {
+                
+                /*
+                 * TODO: Daten jeder Zeile auslesen, in einer List (HashMap?) speichern
+                 * und return
+                 */
+
+                SupplierDTO supplier = new SupplierDTO();
+                supplier.setSupplierName(rs.getString("supplierName"));
+                supplier.setSupplierNumber(rs.getString("supplierNumber"));
+                supplierList.add(supplier);
+            }
+
+            
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Abfragen der Lieferanten: " + e.getMessage());
+        }
+        
+        return supplierList;
     }
 }
