@@ -123,8 +123,14 @@
 }
 
 .standardButton:hover {
-    -fx-background-color: #BCBABE;
-    background-color: #BCBABE;
+    -fx-background-color: #e4e4e6;
+    background-color: #e4e4e6;
 }
 
+.standardButton:focused {
+    -fx-border-color: #1995AD;
+    border-color: #1995AD;
+    -fx-border-width: 2px;
+    border-width: 2px;
+}
 

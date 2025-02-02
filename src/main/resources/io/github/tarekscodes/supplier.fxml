@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -43,8 +44,14 @@
             <Label styleClass="input-label" text="E-Mail-Adresse" />
             <TextField fx:id="supplierEmailField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
          </VBox>
-         <Button mnemonicParsing="false" styleClass="standardButton" text="Lieferant suchen" GridPane.rowIndex="2" />
-         <Button mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button fx:id="supplierSearchButton" mnemonicParsing="false" styleClass="standardButton" text="Lieferant suchen" GridPane.rowIndex="2">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+         <Button fx:id="supplierClearSearchFieldsButton" mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
 
       </children>
    </GridPane>

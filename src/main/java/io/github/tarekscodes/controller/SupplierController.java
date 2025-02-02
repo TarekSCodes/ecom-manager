@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,6 +28,8 @@ public class SupplierController {
     @FXML private TextField supplierNumberField;
     @FXML private TextField supplierphoneNumberField;
     @FXML private TextField supplierEmailField;
+    @FXML private Button supplierSearchButton;
+    @FXML private Button supplierClearSearchFieldsButton;
 
 
     @FXML
@@ -41,20 +44,31 @@ public class SupplierController {
      */
     @FXML
     public void handleTabOrder(KeyEvent event) {
-        TextField currentField = (TextField) event.getSource();
-
-        if (event.getCode() == KeyCode.TAB) {
-            if (currentField.equals(supplierNameField)) {
-                supplierphoneNumberField.requestFocus();
-            } else if (currentField.equals(supplierphoneNumberField)) {
+        
+        // TODO: Nach dem letzten Button soll der Fokus wieder auf das erste Textfeld gesetzt werden
+        if (event.getCode() == KeyCode.TAB) {            
+            if (event.getSource() instanceof TextField currentField) {
+                if (currentField.equals(supplierNumberField)) {
+                    supplierphoneNumberField.requestFocus();
+                } else if (currentField.equals(supplierphoneNumberField)) {
+                    supplierNameField.requestFocus();
+                } else if (currentField.equals(supplierNameField)) {
+                    supplierEmailField.requestFocus();
+                } else if (currentField.equals(supplierEmailField)) {
+                    supplierSearchButton.requestFocus();
+                }
+            }
+        }
+        else if (event.getSource() instanceof Button currentButton) {
+            if (currentButton.equals(supplierSearchButton)) {
+                supplierClearSearchFieldsButton.requestFocus();
+            } else if (currentButton.equals(supplierClearSearchFieldsButton)) {
                 supplierNumberField.requestFocus();
-            } else if (currentField.equals(supplierNumberField)) {
-                supplierEmailField.requestFocus();
-            } else if (currentField.equals(supplierEmailField)) {
-                supplierNameField.requestFocus();
             }
         }
     }
+
+
 
     /**
      * Liest die Werte aus den Textfeldern aus und erstellt ein SupplierDTO-Objekt.
