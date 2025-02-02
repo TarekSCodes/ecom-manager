@@ -84,7 +84,7 @@
     min-width: 800px;
 }
 
-.text-input, .combo-box {
+.text-input {
     -fx-padding: 8px;
     padding: 8px;
     -fx-background-radius: 4px;
@@ -110,72 +110,21 @@
     border-width: 2px;
 }
 
-.combo-box, .choice-box {
-    -fx-max-width: Infinity;
-    max-width: Infinity;
-    -fx-pref-height: 35px;
-    -fx-min-height: 35px;
-    min-height: 35px;
-    -fx-max-height: 35px;
-    max-height: 35px;
-}
-
-.combo-box .list-cell, .choice-box .label {
-    -fx-padding: 0 8px;
-    padding: 0 8px;
-    -fx-alignment: center-left;
-}
-
-/* Neue Stile für ChoiceBox */
-.choice-box {
-    -fx-background-color: white;
-    -fx-border-color: #BCBABE;
-    -fx-border-radius: 4px;
-    -fx-background-radius: 4px;
-    -fx-pref-height: 35px;
-    -fx-min-height: 35px;
-    -fx-max-height: 35px;
-}
-
-.choice-box .context-menu {
-    -fx-background-color: white;
-    -fx-border-color: #BCBABE;
-    -fx-border-width: 1px;
-    -fx-padding: 0;
-}
-
-.choice-box .menu-item {
+.standardButton {
     -fx-padding: 8px;
-    -fx-min-height: 30px;
-    -fx-pref-height: 30px;
+    padding: 8px;
+    -fx-background-color: #F1F1F2;
+    background-color: #F1F1F2;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    border-radius: 4px;
+    -fx-border-color: #BCBABE;
+    border-color: #BCBABE;
 }
 
-.choice-box .menu-item:focused {
-    -fx-background-color: #1995AD;
-}
-
-.choice-box .menu-item:focused > .label {
-    -fx-text-fill: white;
-}
-
-.choice-box > .label {
-    -fx-padding: 0 8px;
-    -fx-alignment: center-left;
-}
-
-.choice-box:showing {
-    -fx-border-color: #1995AD;
-}
-
-/* Stellen Sie sicher, dass die Menüeinträge die volle Breite nutzen */
-.choice-box .menu-item > .label {
-    -fx-padding: 0 8px;
-    -fx-alignment: center-left;
-}
-
-/* Entfernen Sie doppelte Styles */
-.choice-box > .context-menu {
-    -fx-padding: 0;
+.standardButton:hover {
+    -fx-background-color: #BCBABE;
+    background-color: #BCBABE;
 }
 
 

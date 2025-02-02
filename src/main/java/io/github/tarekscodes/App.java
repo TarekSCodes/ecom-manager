@@ -2,7 +2,6 @@ package io.github.tarekscodes;
 
 import java.io.IOException;
 
-import io.github.tarekscodes.db.DBConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +20,6 @@ import javafx.stage.Stage;
 
     @Override
     public void start(Stage stage) throws IOException {
-
-        DBConnector.connect();
 
         mainLayout = new BorderPane();
         scene = new Scene(mainLayout);
