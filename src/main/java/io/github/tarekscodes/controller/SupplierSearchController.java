@@ -1,5 +1,6 @@
 package io.github.tarekscodes.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.github.tarekscodes.db.DBConnector;
@@ -88,54 +89,50 @@ public class SupplierSearchController {
     public void readTextFields(ActionEvent event) {
         
         SupplierDTO supplier = new SupplierDTO();
-        supplier.setSupplierName(supplierNameField.getText());
-        supplier.setSupplierNumber(supplierNumberField.getText());
-        supplier.setFirstContactPhoneNumber(supplierphoneNumberField.getText());
-        supplier.setFirstContactEmail(supplierEmailField.getText());
+        supplier.setSupplierName(supplierNameField.getText().trim());
+        supplier.setSupplierNumber(supplierNumberField.getText().trim());
+        supplier.setFirstContactPhoneNumber(supplierphoneNumberField.getText().trim());
+        supplier.setFirstContactEmail(supplierEmailField.getText().trim());
 
-        generateSQLQuery(supplier);
+        searchSuppliers(supplier);
     }
-
-    // TODO: Methode erstellt aus den Suchparametern eine dynamische SQL-Query und leitet diese an DBConnector weiter
-    // Comoboxen und Choicebox zur Query hinzufügen
-    private void generateSQLQuery(SupplierDTO supplier) {
     
 
-        String supplierNameTrimmed = supplier.getSupplierName().trim();
-        String supplierNumberTrimmed = supplier.getSupplierNumber().trim();
-        String supplierFirstContactPhoneNumberTrimmed = supplier.getFirstContactPhoneNumber().trim();
-        String supplierFirstContactEmailTrimmed = supplier.getFirstContactEmail().trim();
+    private void searchSuppliers(SupplierDTO supplier) {
 
-        StringBuilder query = new StringBuilder();
-
-        String getSupplierString =  "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
-                                    "FROM supplier " +
-                                    "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
-                                    "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
-
-        /*
-         * TODO:
-         * Abfragen der Suchfelder
-         * query dynamisch erstellen
-         * prüfen ob verschieben in DBConnector sinnvoll
-         * redundanter Code - getSupplierString String - bereits in DBConnector enthalten
-        */
-        
-        query.append(getSupplierString + " WHERE 1=1");
-        if (!supplierNameTrimmed.isEmpty()) {
-            query.append(" AND supplierName = '" + supplierNameTrimmed + "'");
+        // Check if all fields are empty
+        if (supplier.getSupplierName().isEmpty() && 
+            supplier.getSupplierNumber().isEmpty() && 
+            supplier.getFirstContactPhoneNumber().isEmpty() && 
+            supplier.getFirstContactEmail().isEmpty()) {
+            return;
         }
-        // if (!supplier.getSupplierPhoneNumber().trim().isEmpty()) {
-        //     query.append(" AND supplierPhoneNumber" + " Like " + "'%" + supplier.getSupplierPhoneNumber().trim() + "%'");
-        // }
-        if (!supplierNumberTrimmed.isEmpty()) {
-            query.append(" AND supplierNumber" + " Like " + "'%" + supplierNumberTrimmed + "%'");
+
+        // Using HashMap<String, String> to store search properties
+        HashMap<String, String> searchProperties = new HashMap<>();
+
+        if (!supplier.getSupplierName().isEmpty()) {
+            searchProperties.put("supplierName", supplier.getSupplierName());
         }
-        // if (!supplier.getSupplierEmail().trim().isEmpty()) {
-        //     query.append(" AND supplierEmail" + " Like " + "'%" + supplier.getSupplierEmail().trim() + "%'");
-        // }
-        
-        System.out.println(query.toString());
+        if (!supplier.getSupplierNumber().isEmpty()) {
+            searchProperties.put("supplierNumber", supplier.getSupplierNumber());
+        }
+        if (!supplier.getFirstContactPhoneNumber().isEmpty()) {
+            searchProperties.put("supplierPhoneNumber", supplier.getFirstContactPhoneNumber());
+        }
+        if (!supplier.getFirstContactEmail().isEmpty()) {
+            searchProperties.put("supplierEmail", supplier.getFirstContactEmail());
+        }
+
+        List<SupplierDTO> suppliers = dbconnector.findSuppliers(searchProperties);
+
+        // Clear the observable list before adding new search results
+        observableSupplierList.clear();
+        observableSupplierList.setAll(suppliers);
+
+        setupSupplierTableColumns();
+
+        supplierTable.setItems(observableSupplierList);
     }
 
     /**
@@ -145,9 +142,9 @@ public class SupplierSearchController {
      */
     private void initializeSuppliersTable() {
     
-        List<SupplierDTO> supplier  = dbconnector.getAllSuppliers();
+        List<SupplierDTO> suppliers  = dbconnector.getAllSuppliers();
         
-        observableSupplierList.setAll(supplier);
+        observableSupplierList.setAll(suppliers);
 
         setupSupplierTableColumns();
         

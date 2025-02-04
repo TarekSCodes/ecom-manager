@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import io.github.tarekscodes.models.SupplierDTO;
@@ -14,6 +15,11 @@ import io.github.tarekscodes.models.SupplierDTO;
 public class DBConnector {
 
     private static DBConnector INSTANCE;
+    private static final String BASE_SUPPLIER_QUERY =
+            "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
+            "FROM supplier " +
+            "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
+            "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
 
     // TODO:
     // 1. Datenbank import, export mittles .json
@@ -32,10 +38,10 @@ public class DBConnector {
     }
 
     /**
-     * Gibt den absoluten Pfad zur SQLite-Datenbank als JDBC-URL zurück.
-     * Der Pfad wird relativ zum Projektverzeichnis konstruiert.
+     * Returns the absolute path to the SQLite database as a JDBC URL.
+     * The path is constructed relative to the project directory.
      * 
-     * @return JDBC-URL als String im Format "jdbc:sqlite:/absoluter/pfad/zur/datenbank.db"
+     * @return JDBC URL as a string in the format "jdbc:sqlite:/absolute/path/to/database.db"
      */
     public static String getDBPath() {
         Path dbPath = Path.of("src", "main", "java", "io", "github", "tarekscodes", "db", "ecom_manager.db").toAbsolutePath();
@@ -60,25 +66,22 @@ public class DBConnector {
     }
 
     /**
-     * Ruft alle Lieferanten aus der Datenbank ab und gibt sie als Liste zurück.
-     * Die Methode führt eine SQL-Abfrage aus, die den Namen und die Nummer jedes Lieferanten
-     * aus der 'supplier' Tabelle abruft.
+     * Retrieves all suppliers from the database and returns them as a list.
+     * The method executes an SQL query that fetches the supplier details including
+     * name, number, status, phone prefix, phone number, and email from the database.
      * 
-     * @return Eine Liste von SupplierDTO-Objekten, die alle Lieferanten repräsentiert.
-     *         Falls keine Lieferanten gefunden werden oder ein Datenbankfehler
-     *         auftritt, wird eine leere Liste zurückgegeben.
+     * @return A list of SupplierDTO objects representing all suppliers.
+     *         If no suppliers are found or a database error occurs, an empty list is returned.
      * @see SupplierDTO
      */
     public List<SupplierDTO> getAllSuppliers() {
-        String getAllSupplierString =   "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
-                                        "FROM supplier " +
-                                        "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
-                                        "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID;";
         
         List<SupplierDTO> suppliersList = new ArrayList<>();
 
+        // TODO: Extract logic for creating SupplierDTO from ResultSet into a separate method to avoid redundancy.
+        //       This method should be called in getAllSuppliers() and findSuppliers().
         try (Connection conn = DriverManager.getConnection(getDBPath());
-             PreparedStatement pstmt = conn.prepareStatement(getAllSupplierString);
+             PreparedStatement pstmt = conn.prepareStatement(BASE_SUPPLIER_QUERY);
              ResultSet rs = pstmt.executeQuery();
             ) {
 
@@ -104,5 +107,19 @@ public class DBConnector {
         }
         
         return suppliersList;
+    }
+
+    public List<SupplierDTO> findSuppliers(HashMap<String, String> searchProperties) {
+
+        String searchString =   BASE_SUPPLIER_QUERY +
+                                " WHERE supplier.supplierName LIKE ? OR supplier.supplierNumber LIKE ?" + 
+                                " contactPerson.phoneNumber, contactPerson.email";
+        
+        // TODO: Create the query string dynamically based on the search properties
+        //       and give it to the new method createSupplierDTOFromResultSet().                     
+        
+        System.out.println(searchString);
+
+        return null;
     }
 }

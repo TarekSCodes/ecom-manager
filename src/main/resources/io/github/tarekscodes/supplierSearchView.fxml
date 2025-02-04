@@ -45,7 +45,7 @@
             <Label styleClass="input-label" text="E-Mail-Adresse" />
             <TextField fx:id="supplierEmailField" onAction="#readTextFields" onKeyPressed="#handleTabOrder" styleClass="text-input" />
          </VBox>
-         <Button fx:id="supplierSearchButton" mnemonicParsing="false" styleClass="standardButton" text="Lieferant suchen" GridPane.rowIndex="2">
+         <Button fx:id="supplierSearchButton" onAction="#readTextFields" mnemonicParsing="false" styleClass="standardButton" text="Lieferant suchen" GridPane.rowIndex="2">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
