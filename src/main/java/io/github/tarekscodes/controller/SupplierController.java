@@ -20,10 +20,10 @@ import javafx.scene.input.KeyEvent;
 public class SupplierController {
     @FXML private TableView<SupplierDTO> supplierTable;
     @FXML private TableColumn<SupplierDTO, String> supplierNumberColumn;
-    @FXML private TableColumn<SupplierDTO, String> nameColumn;
-    @FXML private TableColumn<?, ?> addressColumn;
-    @FXML private TableColumn<?, ?> phoneColumn;
-    @FXML private TableColumn<?, ?> emailColumn;
+    @FXML private TableColumn<SupplierDTO, String> supplierNameColumn;
+    @FXML private TableColumn<SupplierDTO, String> supplierStatusColumn;
+    @FXML private TableColumn<SupplierDTO, String> supplierPhoneColumn;
+    @FXML private TableColumn<SupplierDTO, String> supplierEmailColumn;
     @FXML private TextField supplierNameField;
     @FXML private TextField supplierNumberField;
     @FXML private TextField supplierphoneNumberField;
@@ -132,8 +132,12 @@ public class SupplierController {
 
         ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList(supplier);
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
         supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<>("supplierNumber"));
+        supplierNameColumn.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
+        supplierPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("firstContactPhoneNumber"));
+        supplierEmailColumn.setCellValueFactory(new PropertyValueFactory<>("firstContactEmail"));
+        supplierStatusColumn.setCellValueFactory(new PropertyValueFactory<>("supplierStatus"));
+        
     
         supplierTable.setItems(observableSupplierList);
     }

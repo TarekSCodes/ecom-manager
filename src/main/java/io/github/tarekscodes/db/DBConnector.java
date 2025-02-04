@@ -70,7 +70,11 @@ public class DBConnector {
      * @see SupplierDTO
      */
     public List<SupplierDTO> getAllSupplier() {
-        String getAllSupplierString = "SELECT supplierName, supplierNumber FROM supplier";
+        String getAllSupplierString =   "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
+                                        "FROM supplier " +
+                                        "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
+                                        "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID;";
+        
         List<SupplierDTO> supplierList = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(getDBPath());
@@ -83,10 +87,18 @@ public class DBConnector {
                 SupplierDTO supplier = new SupplierDTO();
                 supplier.setSupplierName(rs.getString("supplierName"));
                 supplier.setSupplierNumber(rs.getString("supplierNumber"));
+                supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
+
+                // Wenn keine Daten eingetragen, ausgabe von "null" verhindern
+                if (supplier.getFirstContactPhoneNumber().contains("null")) {
+                    supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
+                }
+
+                supplier.setFirstContactEmail(rs.getString("email"));
+                supplier.setSupplierStatus(rs.getString("supplierStatus"));
                 supplierList.add(supplier);
             }
 
-            
         } catch (SQLException e) {
             System.err.println("Fehler beim Abfragen der Lieferanten: " + e.getMessage());
         }

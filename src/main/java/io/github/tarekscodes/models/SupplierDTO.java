@@ -10,6 +10,22 @@ public class SupplierDTO {
     private String supplierPostalCode;
     private String supplierCity;
     private String supplierCountry;
+    private String firstContactPhoneNumber;
+    private String firstContactEmail;
+    
+    
+    public String getFirstContactEmail() {
+        return firstContactEmail;
+    }
+    public void setFirstContactEmail(String firstContactEmail) {
+        this.firstContactEmail = firstContactEmail;
+    }
+    public String getFirstContactPhoneNumber() {
+        return firstContactPhoneNumber;
+    }
+    public void setFirstContactPhoneNumber(String firstContactPhoneNumber) {
+        this.firstContactPhoneNumber = firstContactPhoneNumber;
+    }
 
     public String getSupplierName() {
         return supplierName;

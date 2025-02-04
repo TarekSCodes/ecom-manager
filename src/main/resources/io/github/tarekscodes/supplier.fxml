@@ -59,10 +59,10 @@
       <TableView fx:id="supplierTable" styleClass="articleTable" VBox.vgrow="ALWAYS">
       <columns>
          <TableColumn fx:id="supplierNumberColumn" text="Lieferanten Nr." />
-         <TableColumn fx:id="nameColumn" text="Lieferantenname" />
-         <TableColumn fx:id="addressColumn" text="Adresse" />
-         <TableColumn fx:id="phoneColumn" text="Telefon" />
-         <TableColumn fx:id="emailColumn" text="E-Mail" />
+         <TableColumn fx:id="supplierNameColumn" text="Lieferantenname" />
+         <TableColumn fx:id="supplierPhoneColumn" text="Telefon" />
+         <TableColumn fx:id="supplierEmailColumn" text="E-Mail" />
+         <TableColumn fx:id="supplierStatusColumn" text="Status" />
       </columns>
       <columnResizePolicy>
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
