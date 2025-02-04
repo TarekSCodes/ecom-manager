@@ -17,7 +17,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class SupplierController {
+public class SupplierSearchController {
+    
     @FXML private TableView<SupplierDTO> supplierTable;
     @FXML private TableColumn<SupplierDTO, String> supplierNumberColumn;
     @FXML private TableColumn<SupplierDTO, String> supplierNameColumn;

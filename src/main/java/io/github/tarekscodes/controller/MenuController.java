@@ -7,22 +7,22 @@ import javafx.fxml.FXML;
 
 public class MenuController {
     @FXML
-    private void switchToHome() throws IOException {
+    public void switchToHome() throws IOException {
         App.setCenter("home");
     }
 
     @FXML
-    private void switchToArticle() throws IOException {
+    public void switchToArticle() throws IOException {
         App.setCenter("article");
     }
 
     @FXML
-    private void switchToSupplier() throws IOException {
-        App.setCenter("supplier");
+    public void switchToSupplier() throws IOException {
+        App.setCenter("supplierSearchView");
     }
 
     @FXML
-    private void switchToCustomer() throws IOException {
+    public void switchToCustomer() throws IOException {
         App.setCenter("customer");
     }
 }
