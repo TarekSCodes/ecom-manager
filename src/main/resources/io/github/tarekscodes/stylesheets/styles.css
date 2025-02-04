@@ -74,14 +74,11 @@
     -fx-text-fill: #F1F1F2;
 }
 
-.article-container {
-    -fx-spacing: 20;
-    -fx-alignment: top-center;
-}
-
-.supplier-container {
+.supplier-container, .article-container  {
     -fx-min-width: 800px;
     min-width: 800px;
+    -fx-spacing: 10;
+    -fx-alignment: top-center;
 }
 
 .text-input {

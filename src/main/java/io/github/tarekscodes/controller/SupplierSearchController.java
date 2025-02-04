@@ -32,6 +32,7 @@ public class SupplierSearchController {
     @FXML private Button supplierSearchButton;
     @FXML private Button supplierClearSearchFieldsButton;
     DBConnector dbconnector = DBConnector.getINSTANCE();
+    ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList();
 
 
     @FXML
@@ -148,20 +149,19 @@ public class SupplierSearchController {
     
         List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) dbconnector.getAllSupplier();
 
-        ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList(supplier);
+        observableSupplierList.setAll(supplier);
 
-        /*
-         * TODO:
-         * Eigene Methode zum befüllen der Columns nutzen
-         */
+        setupSupplierTableColumns();
+        
+        supplierTable.setItems(observableSupplierList);
+    }
+
+    private void setupSupplierTableColumns() {
 
         supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<>("supplierNumber"));
         supplierNameColumn.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
         supplierPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("firstContactPhoneNumber"));
         supplierEmailColumn.setCellValueFactory(new PropertyValueFactory<>("firstContactEmail"));
         supplierStatusColumn.setCellValueFactory(new PropertyValueFactory<>("supplierStatus"));
-        
-    
-        supplierTable.setItems(observableSupplierList);
     }
 }
