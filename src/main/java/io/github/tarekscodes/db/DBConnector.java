@@ -13,10 +13,23 @@ import io.github.tarekscodes.models.SupplierDTO;
 
 public class DBConnector {
 
+    private static DBConnector INSTANCE;
+
     // TODO:
     // 1. Datenbank import, export mittles .json
     // 2. Implementierung eines Connection-Pools
 
+    private DBConnector() {
+        // Privater Konstruktor, um Instanziierung zu verhindern
+    }
+
+    public static DBConnector getINSTANCE() {
+        // Singleton-Instanz
+        if (INSTANCE == null) {
+            INSTANCE = new DBConnector();
+        }
+        return INSTANCE;
+    }
 
     /**
      * Gibt den absoluten Pfad zur SQLite-Datenbank als JDBC-URL zurück.
@@ -24,7 +37,7 @@ public class DBConnector {
      * 
      * @return JDBC-URL als String im Format "jdbc:sqlite:/absoluter/pfad/zur/datenbank.db"
      */
-    private static String getDBPath() {
+    public static String getDBPath() {
         Path dbPath = Path.of("src", "main", "java", "io", "github", "tarekscodes", "db", "ecom_manager.db").toAbsolutePath();
         return "jdbc:sqlite:" + dbPath.toString();
     }
@@ -56,7 +69,7 @@ public class DBConnector {
      *         auftritt, wird eine leere Liste zurückgegeben.
      * @see SupplierDTO
      */
-    public static List<SupplierDTO> getAllSupplier() {
+    public List<SupplierDTO> getAllSupplier() {
         String getAllSupplierString = "SELECT supplierName, supplierNumber FROM supplier";
         List<SupplierDTO> supplierList = new ArrayList<>();
 

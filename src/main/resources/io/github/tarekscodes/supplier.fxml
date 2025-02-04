@@ -48,7 +48,7 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-         <Button fx:id="supplierClearSearchFieldsButton" mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <Button fx:id="supplierClearSearchFieldsButton" onAction="#clearSearchFields" mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
@@ -58,8 +58,8 @@
    
       <TableView fx:id="supplierTable" styleClass="articleTable" VBox.vgrow="ALWAYS">
       <columns>
-         <TableColumn fx:id="supplierNumberColumn" text="Nummer" />
-         <TableColumn fx:id="nameColumn" text="Name" />
+         <TableColumn fx:id="supplierNumberColumn" text="Lieferanten Nr." />
+         <TableColumn fx:id="nameColumn" text="Lieferantenname" />
          <TableColumn fx:id="addressColumn" text="Adresse" />
          <TableColumn fx:id="phoneColumn" text="Telefon" />
          <TableColumn fx:id="emailColumn" text="E-Mail" />

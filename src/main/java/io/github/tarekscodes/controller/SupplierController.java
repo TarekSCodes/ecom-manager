@@ -30,6 +30,7 @@ public class SupplierController {
     @FXML private TextField supplierEmailField;
     @FXML private Button supplierSearchButton;
     @FXML private Button supplierClearSearchFieldsButton;
+    DBConnector dbconnector = DBConnector.getINSTANCE();
 
 
     @FXML
@@ -68,7 +69,14 @@ public class SupplierController {
         }
     }
 
+    @FXML
+    public void clearSearchFields() {
 
+        supplierNameField.setText(null);
+        supplierNumberField.setText(null);
+        supplierphoneNumberField.setText(null);
+        supplierEmailField.setText(null);
+    }
 
     /**
      * Liest die Werte aus den Textfeldern aus und erstellt ein SupplierDTO-Objekt.
@@ -120,7 +128,7 @@ public class SupplierController {
      */
     private void initializeSuppliersTable() {
     
-        List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) DBConnector.getAllSupplier();
+        List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) dbconnector.getAllSupplier();
 
         ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList(supplier);
 
