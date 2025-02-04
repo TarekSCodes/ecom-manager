@@ -89,8 +89,8 @@ public class SupplierController {
         SupplierDTO supplier = new SupplierDTO();
         supplier.setSupplierName(supplierNameField.getText());
         supplier.setSupplierNumber(supplierNumberField.getText());
-        //supplier.setSupplierPhoneNumber(supplierphoneNumberField.getText());
-        //supplier.setSupplierEmail(supplierEmailField.getText());
+        supplier.setFirstContactPhoneNumber(supplierphoneNumberField.getText());
+        supplier.setFirstContactEmail(supplierEmailField.getText());
 
         generateSQLQuery(supplier);
     }
@@ -102,9 +102,26 @@ public class SupplierController {
 
         String supplierNameTrimmed = supplier.getSupplierName().trim();
         String supplierNumberTrimmed = supplier.getSupplierNumber().trim();
+        String supplierFirstContactPhoneNumberTrimmed = supplier.getFirstContactPhoneNumber().trim();
+        String supplierFirstContactEmailTrimmed = supplier.getFirstContactEmail().trim();
 
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM supplier WHERE 1=1");
+
+        String getSupplierString =  "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
+                                    "FROM supplier " +
+                                    "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
+                                    "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
+
+        /*
+         * TODO:
+         * Abfragen der Suchfelder
+         * query dynamisch erstellen
+         * prüfen ob verschieben in DBConnector sinnvoll
+         * redundanter Code - getSupplierString String - bereits in DBConnector enthalten
+         * Methode zum befüllen der Columns, um redundanten Code zu vermeiden
+        */
+        
+        query.append(getSupplierString + " WHERE 1=1");
         if (!supplierNameTrimmed.isEmpty()) {
             query.append(" AND supplierName = '" + supplierNameTrimmed + "'");
         }
@@ -131,6 +148,11 @@ public class SupplierController {
         List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) dbconnector.getAllSupplier();
 
         ObservableList<SupplierDTO> observableSupplierList = FXCollections.observableArrayList(supplier);
+
+        /*
+         * TODO:
+         * Eigene Methode zum befüllen der Columns nutzen
+         */
 
         supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<>("supplierNumber"));
         supplierNameColumn.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
