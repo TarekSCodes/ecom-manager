@@ -1,6 +1,5 @@
 package io.github.tarekscodes.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.github.tarekscodes.db.DBConnector;
@@ -120,7 +119,6 @@ public class SupplierSearchController {
          * query dynamisch erstellen
          * prüfen ob verschieben in DBConnector sinnvoll
          * redundanter Code - getSupplierString String - bereits in DBConnector enthalten
-         * Methode zum befüllen der Columns, um redundanten Code zu vermeiden
         */
         
         query.append(getSupplierString + " WHERE 1=1");
@@ -141,14 +139,14 @@ public class SupplierSearchController {
     }
 
     /**
-     * Lädt alle Lieferanten aus der Datenbank und bindet die Spalten 'Name' und 'Lieferantennummer'
+     * Lädt alle Lieferanten aus der Datenbank und bindet die Spalten der TableView
      * an die entsprechenden Properties des SupplierDTO-Objekts.
      * Die Daten werden über den DBConnector abgerufen und in einer ObservableList gespeichert.
      */
     private void initializeSuppliersTable() {
     
-        List<SupplierDTO> supplier  = (ArrayList<SupplierDTO>) dbconnector.getAllSupplier();
-
+        List<SupplierDTO> supplier  = dbconnector.getAllSuppliers();
+        
         observableSupplierList.setAll(supplier);
 
         setupSupplierTableColumns();

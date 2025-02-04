@@ -13,6 +13,16 @@ public class SupplierDTO {
     private String firstContactPhoneNumber;
     private String firstContactEmail;
     
+    public  SupplierDTO() {
+        // Default-Constructor
+    }
+
+    public SupplierDTO(String supplierName, String supplierNumber, String firstContactEmail, String supplierStatus) {
+        this.supplierName = supplierName;
+        this.supplierNumber = supplierNumber;
+        this.firstContactEmail = firstContactEmail;
+        this.supplierStatus = supplierStatus;
+    }
     
     public String getFirstContactEmail() {
         return firstContactEmail;

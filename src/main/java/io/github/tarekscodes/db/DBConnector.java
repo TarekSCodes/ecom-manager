@@ -20,11 +20,11 @@ public class DBConnector {
     // 2. Implementierung eines Connection-Pools
 
     private DBConnector() {
-        // Privater Konstruktor, um Instanziierung zu verhindern
+        // Privat Construktor, to prevent instantiation
     }
 
     public static DBConnector getINSTANCE() {
-        // Singleton-Instanz
+        // Singleton-Instance
         if (INSTANCE == null) {
             INSTANCE = new DBConnector();
         }
@@ -69,13 +69,13 @@ public class DBConnector {
      *         auftritt, wird eine leere Liste zurückgegeben.
      * @see SupplierDTO
      */
-    public List<SupplierDTO> getAllSupplier() {
+    public List<SupplierDTO> getAllSuppliers() {
         String getAllSupplierString =   "SELECT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
                                         "FROM supplier " +
                                         "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
                                         "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID;";
         
-        List<SupplierDTO> supplierList = new ArrayList<>();
+        List<SupplierDTO> suppliersList = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(getDBPath());
              PreparedStatement pstmt = conn.prepareStatement(getAllSupplierString);
@@ -84,25 +84,25 @@ public class DBConnector {
 
             while (rs.next()) {
 
-                SupplierDTO supplier = new SupplierDTO();
-                supplier.setSupplierName(rs.getString("supplierName"));
-                supplier.setSupplierNumber(rs.getString("supplierNumber"));
+                SupplierDTO supplier = new SupplierDTO(
+                    rs.getString("supplierName"),
+                    rs.getString("supplierNumber"),
+                    rs.getString("email"),
+                    rs.getString("supplierStatus")
+                );
                 supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
 
-                // Wenn keine Daten eingetragen, ausgabe von "null" verhindern
+                // Prevent output of "null" if no data is entered
                 if (supplier.getFirstContactPhoneNumber().contains("null")) {
                     supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
                 }
-
-                supplier.setFirstContactEmail(rs.getString("email"));
-                supplier.setSupplierStatus(rs.getString("supplierStatus"));
-                supplierList.add(supplier);
+                suppliersList.add(supplier);
             }
 
         } catch (SQLException e) {
             System.err.println("Fehler beim Abfragen der Lieferanten: " + e.getMessage());
         }
         
-        return supplierList;
+        return suppliersList;
     }
 }
