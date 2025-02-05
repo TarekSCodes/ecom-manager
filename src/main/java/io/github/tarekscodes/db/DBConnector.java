@@ -22,8 +22,8 @@ public class DBConnector {
             "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
 
     // TODO:
-    // 1. Datenbank import, export mittles .json
-    // 2. Implementierung eines Connection-Pools
+    // 1. Import and export database using .json
+    // 2. Implement a connection pool
 
     private DBConnector() {
         // Privat Construktor, to prevent instantiation
@@ -65,23 +65,31 @@ public class DBConnector {
         }
     }
 
-    /**
-     * Retrieves all suppliers from the database and returns them as a list.
-     * The method executes an SQL query that fetches the supplier details including
-     * name, number, status, phone prefix, phone number, and email from the database.
-     * 
-     * @return A list of SupplierDTO objects representing all suppliers.
-     *         If no suppliers are found or a database error occurs, an empty list is returned.
-     * @see SupplierDTO
-     */
     public List<SupplierDTO> getAllSuppliers() {
+                
+        return createSupplierDTOFromResultSet(BASE_SUPPLIER_QUERY);
+    }
+
+    public List<SupplierDTO> findSuppliers(HashMap<String, String> searchProperties) {
+
+        String searchString =   BASE_SUPPLIER_QUERY +
+                                " WHERE supplier.supplierName LIKE ? OR supplier.supplierNumber LIKE ?" + 
+                                " contactPerson.phoneNumber, contactPerson.email";
         
+        // TODO: Create the query string dynamically based on the search properties
+        //       and give it to the new method createSupplierDTOFromResultSet().                     
+        
+        System.out.println(searchString);
+
+        return null;
+    }
+
+    private List<SupplierDTO> createSupplierDTOFromResultSet(String sqlQuery) {
+    
         List<SupplierDTO> suppliersList = new ArrayList<>();
 
-        // TODO: Extract logic for creating SupplierDTO from ResultSet into a separate method to avoid redundancy.
-        //       This method should be called in getAllSuppliers() and findSuppliers().
         try (Connection conn = DriverManager.getConnection(getDBPath());
-             PreparedStatement pstmt = conn.prepareStatement(BASE_SUPPLIER_QUERY);
+             PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
              ResultSet rs = pstmt.executeQuery();
             ) {
 
@@ -107,26 +115,5 @@ public class DBConnector {
         }
         
         return suppliersList;
-    }
-
-    public List<SupplierDTO> findSuppliers(HashMap<String, String> searchProperties) {
-
-        String searchString =   BASE_SUPPLIER_QUERY +
-                                " WHERE supplier.supplierName LIKE ? OR supplier.supplierNumber LIKE ?" + 
-                                " contactPerson.phoneNumber, contactPerson.email";
-        
-        // TODO: Create the query string dynamically based on the search properties
-        //       and give it to the new method createSupplierDTOFromResultSet().                     
-        
-        System.out.println(searchString);
-
-        return null;
-    }
-
-    private List<SupplierDTO> createSupplierDTOFromResultSet() {
-    
-        
-
-        return null;
     }
 }

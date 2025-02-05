@@ -28,6 +28,6 @@ public class CustomerController {
 
     @FXML
     private void initialize() {
-        // Hier kommt später die Initialisierungslogik
+        
     }
 } 
