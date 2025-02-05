@@ -122,4 +122,11 @@ public class DBConnector {
 
         return null;
     }
+
+    private List<SupplierDTO> createSupplierDTOFromResultSet() {
+    
+        
+
+        return null;
+    }
 }

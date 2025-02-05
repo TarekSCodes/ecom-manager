@@ -42,13 +42,13 @@ public class SupplierSearchController {
     }
 
     /**
-     * Diese Methode handelt den Tab-Order für die Textfelder.
-     * @param event Das KeyEvent, das ausgelöst wurde.
+     * This method handles the tab order for the text fields.
+     * @param event The KeyEvent that was triggered.
      */
     @FXML
     public void handleTabOrder(KeyEvent event) {
         
-        // TODO: Nach dem letzten Button soll der Fokus wieder auf das erste Textfeld gesetzt werden
+        // After the last button, the focus should be set back to the first text field
         if (event.getCode() == KeyCode.TAB) {            
             if (event.getSource() instanceof TextField currentField) {
                 if (currentField.equals(supplierNumberField)) {
@@ -81,9 +81,9 @@ public class SupplierSearchController {
     }
 
     /**
-     * Liest die Werte aus den Textfeldern aus und erstellt ein SupplierDTO-Objekt.
+     * Reads the values from the text fields and creates a SupplierDTO object.
      *
-     * @param event Das ActionEvent, das ausgelöst wurde, als die Aktion ausgeführt wurde.
+     * @param event The ActionEvent that was triggered when the action was performed.
      */
     @FXML
     public void readTextFields(ActionEvent event) {
@@ -136,14 +136,14 @@ public class SupplierSearchController {
     }
 
     /**
-     * Lädt alle Lieferanten aus der Datenbank und bindet die Spalten der TableView
-     * an die entsprechenden Properties des SupplierDTO-Objekts.
-     * Die Daten werden über den DBConnector abgerufen und in einer ObservableList gespeichert.
+     * Initializes the suppliers table by fetching all suppliers from the database,
+     * setting up the table columns, and populating the table with the supplier data.
      */
     private void initializeSuppliersTable() {
     
         List<SupplierDTO> suppliers  = dbconnector.getAllSuppliers();
         
+        observableSupplierList.clear();
         observableSupplierList.setAll(suppliers);
 
         setupSupplierTableColumns();
@@ -151,6 +151,9 @@ public class SupplierSearchController {
         supplierTable.setItems(observableSupplierList);
     }
 
+    /**
+     * Configures the columns of the supplier table with the appropriate property values.
+     */
     private void setupSupplierTableColumns() {
 
         supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<>("supplierNumber"));
