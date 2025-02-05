@@ -46,7 +46,14 @@
 .mainContent {
     -fx-padding: 20px;
     padding: 20px;
-    -fx-alignment: center;
+    -fx-min-width: 800px;
+    min-width: 800px;
+    -fx-spacing: 10;
+    -fx-alignment: top-center;
+    -fx-border-color: transparent transparent #BCBABE transparent;
+    border-color: transparent transparent #BCBABE transparent;
+    -fx-border-width: 0 0 1px 0;
+    border-width: 0 0 1px 0;
 }
 
 .articleTable {
@@ -75,10 +82,7 @@
 }
 
 .supplier-container, .article-container  {
-    -fx-min-width: 800px;
-    min-width: 800px;
-    -fx-spacing: 10;
-    -fx-alignment: top-center;
+
 }
 
 .text-input {
@@ -131,3 +135,20 @@
     border-width: 2px;
 }
 
+/*  BottomBar Styles  */
+
+.bottomBar {
+    -fx-background-color: #F1F1F2;
+    background-color: #F1F1F2;
+    -fx-pref-height: 25px;
+    -fx-min-height: 25px;
+    min-height: 25px;
+    -fx-max-height: 25px;
+    max-height: 25px;
+    -fx-min-width: 100%;
+    min-width: 100%;
+    -fx-alignment: center;
+    -fx-text-fill: #BCBABE;
+    -fx-font-size: 14px;
+    font-size: 14px;
+}

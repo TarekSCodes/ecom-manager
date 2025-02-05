@@ -28,6 +28,7 @@ import javafx.stage.Stage;
         VBox menu = FXMLLoader.load(App.class.getResource("mainMenu.fxml"));
         mainLayout.setLeft(menu);
         setCenter("home");
+        setBottom("bottomBar");
 
         stage.setMinWidth(1000);
         stage.setMinHeight(600);
@@ -39,11 +40,29 @@ import javafx.stage.Stage;
         stage.show();
     }
 
+    /**
+     * Sets the center of the main layout with the content loaded from the specified FXML file.
+     *
+     * @param fxml the path to the FXML file to load
+     * @throws IOException if an I/O error occurs during loading of the FXML file
+     */
     public static void setCenter(String fxml) throws IOException {
         Parent content = loadFXML(fxml);
         mainLayout.setCenter(content);
     }
 
+    public static void setBottom(String fxml) throws IOException {
+        Parent content = loadFXML(fxml);
+        mainLayout.setBottom(content);
+    }
+
+    /**
+     * Loads an FXML file and returns the corresponding Parent object.
+     *
+     * @param fxml the name of the FXML file to load, without the ".fxml" extension
+     * @return the loaded Parent object
+     * @throws IOException if an I/O error occurs during loading
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
