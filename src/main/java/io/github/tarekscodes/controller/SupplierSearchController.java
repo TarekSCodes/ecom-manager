@@ -78,6 +78,7 @@ public class SupplierSearchController {
         supplierNumberField.setText("");
         supplierphoneNumberField.setText("");
         supplierEmailField.setText("");
+        updateSupplierTable(dbconnector.getAllSuppliers());
     }
 
     /**
@@ -134,13 +135,7 @@ public class SupplierSearchController {
 
         List<SupplierDTO> suppliers = dbconnector.findSuppliers(searchProperties);
 
-        // Clear the observable list before adding new search results
-        observableSupplierList.clear();
-        observableSupplierList.setAll(suppliers);
-
-        setupSupplierTableColumns();
-
-        supplierTable.setItems(observableSupplierList);
+        updateSupplierTable(suppliers);
     }
 
     /**
@@ -151,6 +146,11 @@ public class SupplierSearchController {
     
         List<SupplierDTO> suppliers  = dbconnector.getAllSuppliers();
         
+        updateSupplierTable(suppliers);
+    }
+
+    private void updateSupplierTable(List<SupplierDTO> suppliers) {
+
         observableSupplierList.clear();
         observableSupplierList.setAll(suppliers);
 
