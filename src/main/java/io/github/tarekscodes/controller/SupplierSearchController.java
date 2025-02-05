@@ -74,10 +74,10 @@ public class SupplierSearchController {
     @FXML
     public void clearSearchFields() {
 
-        supplierNameField.setText(null);
-        supplierNumberField.setText(null);
-        supplierphoneNumberField.setText(null);
-        supplierEmailField.setText(null);
+        supplierNameField.setText("");
+        supplierNumberField.setText("");
+        supplierphoneNumberField.setText("");
+        supplierEmailField.setText("");
     }
 
     /**
@@ -98,6 +98,14 @@ public class SupplierSearchController {
     }
     
 
+    /**
+     * Searches for suppliers based on the provided SupplierDTO properties.
+     * If all fields in the SupplierDTO are empty, the method returns without performing a search.
+     * Otherwise, it constructs a search query using the non-empty fields and retrieves matching suppliers.
+     * The search results are then used to update the observable supplier list and the supplier table.
+     *
+     * @param supplier the SupplierDTO containing the search criteria
+     */
     private void searchSuppliers(SupplierDTO supplier) {
 
         // Check if all fields are empty

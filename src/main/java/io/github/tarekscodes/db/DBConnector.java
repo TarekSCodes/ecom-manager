@@ -24,6 +24,7 @@ public class DBConnector {
     // TODO:
     // 1. Import and export database using .json
     // 2. Implement a connection pool
+    // 3. Retrieve the SupplierDTO ID from the database to use it when selecting a supplier in the table to fetch all information
 
     private DBConnector() {
         // Privat Construktor, to prevent instantiation
@@ -65,55 +66,102 @@ public class DBConnector {
         }
     }
 
+    /**
+     * Retrieves a list of all suppliers from the database.
+     *
+     * @return a list of SupplierDTO objects representing all suppliers.
+     */
     public List<SupplierDTO> getAllSuppliers() {
-                
-        return createSupplierDTOFromResultSet(BASE_SUPPLIER_QUERY);
+        
+        List<String> emptyList = new ArrayList<>();
+        return createSupplierDTOFromResultSet(BASE_SUPPLIER_QUERY, emptyList);
     }
 
+    /**
+     * Finds suppliers based on the given search properties.
+     *
+     * @param searchProperties a HashMap containing search criteria where the key is the property name and the value is the property value.
+     *                         Supported keys are:
+     *                         - "supplierName": to search by supplier name (partial match).
+     *                         - "supplierNumber": to search by supplier number (partial match).
+     *                         - "supplierPhoneNumber": to search by supplier phone number (partial match).
+     *                         - "supplierEmail": to search by supplier email (partial match).
+     * @return a List of SupplierDTO objects that match the search criteria.
+     */
     public List<SupplierDTO> findSuppliers(HashMap<String, String> searchProperties) {
 
-        String searchString =   BASE_SUPPLIER_QUERY +
-                                " WHERE supplier.supplierName LIKE ? OR supplier.supplierNumber LIKE ?" + 
-                                " contactPerson.phoneNumber, contactPerson.email";
-        
-        // TODO: Create the query string dynamically based on the search properties
-        //       and give it to the new method createSupplierDTOFromResultSet().                     
-        
-        System.out.println(searchString);
+        StringBuilder queryBuilder = new StringBuilder(BASE_SUPPLIER_QUERY);
+        List<String> whereClauses = new ArrayList<>();
+        List<String> searchValues = new ArrayList<>();
 
-        return null;
+
+        if (searchProperties.containsKey("supplierName")) {
+            whereClauses.add("supplier.supplierName LIKE ?");
+            searchValues.add("%" + searchProperties.get("supplierName") + "%");
+        }
+        if (searchProperties.containsKey("supplierNumber")) {
+            whereClauses.add("supplier.supplierNumber LIKE ?");
+            searchValues.add("%" + searchProperties.get("supplierNumber") + "%");
+        }
+        if (searchProperties.containsKey("supplierPhoneNumber")) {
+            whereClauses.add("contactPerson.phoneNumber LIKE ?");
+            searchValues.add("%" + searchProperties.get("supplierPhoneNumber") + "%");
+        }
+        if (searchProperties.containsKey("supplierEmail")) {
+            whereClauses.add("contactPerson.email LIKE ?");
+            searchValues.add("%" + searchProperties.get("supplierEmail") + "%");
+        }
+
+        if (!whereClauses.isEmpty()) {
+            queryBuilder.append(" WHERE ");
+            queryBuilder.append(String.join(" AND ", whereClauses));
+        }
+        return createSupplierDTOFromResultSet(queryBuilder.toString(), searchValues);
     }
 
-    private List<SupplierDTO> createSupplierDTOFromResultSet(String sqlQuery) {
+    /**
+     * Creates a list of SupplierDTO objects from the result set of a SQL query.
+     *
+     * @param sqlQuery The SQL query to be executed.
+     * @param searchValues The list of values to be set in the prepared statement.
+     * @return A list of SupplierDTO objects created from the result set.
+     * @throws SQLException If a database access error occurs or the SQL query is invalid.
+     */
+    private List<SupplierDTO> createSupplierDTOFromResultSet(String sqlQuery, List<String> searchValues) {
     
         List<SupplierDTO> suppliersList = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(getDBPath());
              PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-             ResultSet rs = pstmt.executeQuery();
             ) {
 
-            while (rs.next()) {
+            for (int i = 0; i < searchValues.size(); i++) {
+                pstmt.setString(i + 1, searchValues.get(i));
+            }
 
-                SupplierDTO supplier = new SupplierDTO(
-                    rs.getString("supplierName"),
-                    rs.getString("supplierNumber"),
-                    rs.getString("email"),
-                    rs.getString("supplierStatus")
-                );
-                supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
-
-                // Prevent output of "null" if no data is entered
-                if (supplier.getFirstContactPhoneNumber().contains("null")) {
-                    supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
+            try (ResultSet rs = pstmt.executeQuery()) {
+            
+                while (rs.next()) {
+    
+                    SupplierDTO supplier = new SupplierDTO(
+                        rs.getString("supplierName"),
+                        rs.getString("supplierNumber"),
+                        rs.getString("email"),
+                        rs.getString("supplierStatus")
+                    );
+                    supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
+    
+                    // Prevent output of "null" if no data is entered
+                    if (supplier.getFirstContactPhoneNumber().contains("null")) {
+                        supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
+                    }
+                    suppliersList.add(supplier);
                 }
-                suppliersList.add(supplier);
             }
 
         } catch (SQLException e) {
             System.err.println("Fehler beim Abfragen der Lieferanten: " + e.getMessage());
         }
-        
         return suppliersList;
     }
 }
