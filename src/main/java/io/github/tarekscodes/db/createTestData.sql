@@ -110,8 +110,7 @@ INSERT INTO website (supplierID, websiteAddress) VALUES
 (26, 'www.brackets-corp.com'),
 (27, 'www.curly-solutions.de'),
 (28, 'www.dash-trading.net'),
-(29, 'www.equals-inc.com'),
-(30, 'www.forwardslash-gmbh.de');
+(29, 'www.equals-inc.com');
 
 -- Insert data into supplier_address table
 INSERT INTO supplier_address (supplierID, addressID, addressType) VALUES
@@ -143,8 +142,7 @@ INSERT INTO supplier_address (supplierID, addressID, addressType) VALUES
 (26, 26, 'Hauptsitz'),
 (27, 27, 'Hauptsitz'),
 (28, 28, 'Hauptsitz'),
-(29, 29, 'Hauptsitz'),
-(30, 30, 'Hauptsitz');
+(29, 29, 'Hauptsitz');
 
 -- Insert data into supplier_contactPerson table
 INSERT INTO supplier_contactPerson (supplierID, contactPersonID, contactPersonType) VALUES
@@ -161,20 +159,4 @@ INSERT INTO supplier_contactPerson (supplierID, contactPersonID, contactPersonTy
 (11, 11, 'Kundendienstleiter'),
 (12, 12, 'Technischer Leiter'),
 (13, 13, 'Produktionsleiter'),
-(14, 14, 'Forschungsleiter'),
-(15, 15, 'Entwicklungsleiter'),
-(16, 16, 'Vertriebsleiter'),
-(17, 17, 'Exportleiter'),
-(18, 18, 'Importleiter'),
-(19, 19, 'PR-Leiter'),
-(20, 20, 'Innovationsmanager'),
-(21, 21, 'Projektmanager'),
-(22, 22, 'Berater'),
-(23, 23, 'Trainer'),
-(24, 24, 'Coach'),
-(25, 25, 'Mentor'),
-(26, 26, 'Sponsor'),
-(27, 27, 'Investor'),
-(28, 28, 'Partner'),
-(29, 29, 'Kunde'),
-(30, 30, 'Lieferant');
+(14, 14, 'Forschungsleiter');

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -144,9 +145,12 @@ public class SupplierSearchController {
      */
     private void initializeSuppliersTable() {
     
+        // initlize the table with all suppliers
         List<SupplierDTO> suppliers  = dbconnector.getAllSuppliers();
-        
         updateSupplierTable(suppliers);
+
+        Tooltip clearFieldsTooltip = new Tooltip("Suchfelder löschen");
+        supplierClearSearchFieldsButton.setTooltip(clearFieldsTooltip);
     }
 
     private void updateSupplierTable(List<SupplierDTO> suppliers) {
