@@ -115,7 +115,9 @@ public class SupplierSearchController {
             supplier.getSupplierNumber().isEmpty() && 
             supplier.getFirstContactPhoneNumber().isEmpty() && 
             supplier.getFirstContactEmail().isEmpty()) {
-            return;
+                List<SupplierDTO> allSupplier = dbconnector.getAllSuppliers();
+                updateSupplierTable(allSupplier);
+                return;
         }
 
         // Using HashMap<String, String> to store search properties
