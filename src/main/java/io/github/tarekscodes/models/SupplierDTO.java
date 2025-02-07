@@ -2,6 +2,7 @@ package io.github.tarekscodes.models;
 
 public class SupplierDTO {
 
+    private int supplierID;
     private String supplierName;
     private String supplierNumber;
     private String supplierStatus;
@@ -16,12 +17,17 @@ public class SupplierDTO {
     public  SupplierDTO() {
         // Default-Constructor
     }
-
-    public SupplierDTO(String supplierName, String supplierNumber, String firstContactEmail, String supplierStatus) {
+    
+    public SupplierDTO(int supplierID, String supplierName, String supplierNumber, String firstContactEmail, String supplierStatus) {
+        this.supplierID = supplierID;
         this.supplierName = supplierName;
         this.supplierNumber = supplierNumber;
         this.firstContactEmail = firstContactEmail;
         this.supplierStatus = supplierStatus;
+    }
+    
+    public int getSupplierID() {
+        return supplierID;
     }
     
     public String getFirstContactEmail() {

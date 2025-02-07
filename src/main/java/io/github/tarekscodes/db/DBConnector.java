@@ -16,7 +16,7 @@ public class DBConnector {
 
     private static DBConnector INSTANCE;
     private static final String BASE_SUPPLIER_QUERY =
-            "SELECT DISTINCT supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
+            "SELECT DISTINCT supplier.supplierID, supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
             "FROM supplier " +
             "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
             "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
@@ -47,23 +47,6 @@ public class DBConnector {
     public static String getDBPath() {
         Path dbPath = Path.of("src", "main", "java", "io", "github", "tarekscodes", "db", "ecom_manager.db").toAbsolutePath();
         return "jdbc:sqlite:" + dbPath.toString();
-    }
-
-    public static void connect() {
-        try (Connection conn = DriverManager.getConnection(getDBPath())) {
-            System.out.println("Verbindung zur Datenbank hergestellt");
-        } catch (SQLException e) {
-            System.out.println("Fehler beim Verbinden mit der Datenbank: " + e.getMessage());
-        }
-    }
-
-    public static void executeQuery(String query) {
-        try (Connection conn = DriverManager.getConnection(getDBPath())) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.executeQuery();
-        } catch (SQLException e) {
-            System.out.println("Fehler beim Ausführen der Query: " + e.getMessage());
-        }
     }
 
     /**
@@ -144,6 +127,7 @@ public class DBConnector {
                 while (rs.next()) {
     
                     SupplierDTO supplier = new SupplierDTO(
+                        rs.getInt("supplierID"),
                         rs.getString("supplierName"),
                         rs.getString("supplierNumber"),
                         rs.getString("email"),
