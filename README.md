@@ -10,7 +10,7 @@
 - 👥 Verwaltung von **Kunden**
 - 📚 Verwaltung von **Artikeln**
 - 🛠 SQLite-Unterstützung für persistente Datenspeicherung
-- 🌐 Moderne Benutzeroberfläche mit JavaFX
+- 🌐 Benutzeroberfläche mit JavaFX
 
 ## 🛠 Installation & Setup
 
@@ -39,16 +39,17 @@ mvn javafx:run
 ## 📚 Technologien
 
 - **Programmiersprache:** Java 21
-- **UI-Framework:** JavaFX 23
-- **Datenbank:** SQLite mit JDBC-Treiber `org.xerial.sqlite-jdbc`
-- **Build-Tool:** Maven 3.13.0
+- **UI-Framework:** [*JavaFx 23*](https://github.com/openjdk/jfx)
+- **Datenbank:** [*SQLite JDBC Driver*](https://github.com/xerial/sqlite-jdbc)
+- **Build-Tool:** [*Maven 3.13.0*](https://github.com/apache/maven)
 
 ## 📷 Screenshots
 
+![Bildbeschreibung](docs/supplier-search-view.png)
 
 ## ✉ Kontakt
 
-*Autor: *[*TarekSCodes*](https://github.com/TarekSCodes)
+*Autor: * [*TarekSCodes*](https://github.com/TarekSCodes)
 
 ## 🌐 Lizenz
 
