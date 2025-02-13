@@ -24,7 +24,6 @@ public class DBConnector {
     // TODO:
     // 1. Import and export database using .json
     // 2. Implement a connection pool
-    // 3. Retrieve the SupplierDTO ID from the database to use it when selecting a supplier in the table to fetch all information
 
     private DBConnector() {
         // Privat Construktor, to prevent instantiation
