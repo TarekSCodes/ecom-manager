@@ -82,8 +82,9 @@
     -fx-text-fill: #F1F1F2;
 }
 
-.supplier-container, .article-container  {
-
+.notes {
+    -fx-max-width: 50%;
+    max-width: 50%;
 }
 
 .text-input {
@@ -151,5 +152,17 @@
     -fx-alignment: center;
     -fx-text-fill: #BCBABE;
     -fx-font-size: 14px;
+    font-size: 14px;
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('/src/main/resources/io/github/tarekscodes/fonts/Merriweather-Regular.ttf');
+}
+ 
+.label {
+    font-family: 'Merriweather';
+    -fx-font-size: 15px;
     font-size: 14px;
 }
