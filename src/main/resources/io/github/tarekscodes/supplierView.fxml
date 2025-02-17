@@ -13,12 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierController">
-   <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0">
+   <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
       <children>
          
-            <GridPane hgap="15.0" vgap="15.0">
+            <GridPane hgap="15.0" vgap="15.0" HBox.hgrow="ALWAYS">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
            <rowConstraints>
@@ -29,14 +31,14 @@
            </rowConstraints>
             
                <children>
-               <Label styleClass="label" text="Lieferanten Nr." GridPane.rowIndex="0" />
-               <Label styleClass="label" text="Lieferantenname" GridPane.rowIndex="1" />
-               <Label styleClass="label" text="Webseite" GridPane.rowIndex="2" />
-               <Label styleClass="label" text="Status" GridPane.rowIndex="3" />
+               <Label styleClass="label" text="Lieferanten Nr.:" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+               <Label styleClass="label" text="Lieferantenname:" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+               <Label styleClass="label" text="Webseite:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+               <Label styleClass="label" text="Status:" GridPane.columnIndex="2" GridPane.columnSpan="2" />
       
             </children>
          </GridPane>
-         <TabPane styleClass="notes" HBox.hgrow="ALWAYS">
+         <TabPane styleClass="notes" HBox.hgrow="NEVER">
             <tabs>
                <Tab text="Notiz">
                   <content>
@@ -54,8 +56,8 @@
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       </columnConstraints>
       <rowConstraints>
-         <RowConstraints minHeight="150.0" prefHeight="150.0" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+         <RowConstraints minHeight="200.0" prefHeight="200.0" />
+            <RowConstraints minHeight="150.0" prefHeight="30.0" vgrow="ALWAYS" />
       </rowConstraints>
       <children>
          
