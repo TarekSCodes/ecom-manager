@@ -44,6 +44,8 @@
 /*  Main Content Styles  */
 
 .mainContent {
+    -fx-background-color: #F7F3E9;
+    background-color: #F7F3E9;
     -fx-padding: 20px;
     padding: 20px;
     -fx-min-width: 800px;
@@ -130,6 +132,17 @@
     border-color: #1995AD;
     -fx-border-width: 2px;
     border-width: 2px;
+}
+
+.note-text-area {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-padding: 8px;
+    padding: 8px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    border-radius: 0;
+    -fx-prompt-text-fill: #BCBABE;
 }
 
 /*  BottomBar Styles  */

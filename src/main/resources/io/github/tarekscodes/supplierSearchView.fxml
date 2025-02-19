@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css"
+<VBox styleClass="mainContent" stylesheets="@stylesheets/styles.css"
                   xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierSearchController">
    
       <GridPane hgap="15.0" vgap="15.0">
