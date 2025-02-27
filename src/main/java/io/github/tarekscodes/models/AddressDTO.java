@@ -16,9 +16,6 @@ public class AddressDTO {
     public int getAddressID() {
         return addressID;
     }
-    public void setAddressID(int addressID) {
-        this.addressID = addressID;
-    }
     public String getStreet() {
         return street;
     }
