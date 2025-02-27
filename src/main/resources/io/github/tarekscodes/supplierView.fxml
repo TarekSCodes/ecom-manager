@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="supplier-container, mainContent" stylesheets="@stylesheets/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.tarekscodes.controller.SupplierController">
    <HBox nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
       <children>
          
@@ -20,6 +20,7 @@
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" />
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints />
            </columnConstraints>
            <rowConstraints>
              <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
@@ -29,16 +30,31 @@
            </rowConstraints>
             
                <children>
-               <Label styleClass="label" text="Lieferanten Nr.:" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-               <Label styleClass="label" text="Lieferantenname:" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-               <Label styleClass="label" text="Webseite:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-               <Label styleClass="label" text="Status:" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+               <Label fx:id="supplierNumberLabel" styleClass="label" text="Lieferanten Nr.:" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+               <Label fx:id="supplierNameLabel" styleClass="label" text="Lieferantenname:" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+               <Label fx:id="supplierWebsiteLabel" styleClass="label" text="Webseite:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+               <Label fx:id="supplierStatusLabel" styleClass="label" text="Status:" GridPane.columnIndex="1" GridPane.columnSpan="2" />
       
             </children>
          </GridPane>
          <TabPane styleClass="notes">
             <tabs>
-               <Tab text="Notiz" styleClass="note-tab">
+               <Tab closable="false" styleClass="note-tab" text="Notiz 1">
+                  <content>
+                     <TextArea styleClass="note-text-area" />
+                  </content>
+               </Tab>
+               <Tab closable="false" styleClass="note-tab" text="Notiz 2">
+                  <content>
+                     <TextArea styleClass="note-text-area" />
+                  </content>
+               </Tab>
+               <Tab closable="false" styleClass="note-tab" text="Notiz 3">
+                  <content>
+                     <TextArea styleClass="note-text-area" />
+                  </content>
+               </Tab>
+               <Tab closable="false" styleClass="note-tab" text="Notiz 4">
                   <content>
                      <TextArea styleClass="note-text-area" />
                   </content>
