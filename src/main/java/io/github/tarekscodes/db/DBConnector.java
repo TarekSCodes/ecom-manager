@@ -16,17 +16,22 @@ public class DBConnector {
 
     private static DBConnector INSTANCE;
     private static final String BASE_SUPPLIER_QUERY =
-            "SELECT DISTINCT supplier.supplierID, supplier.supplierNumber, supplier.supplierName, supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
+            "SELECT DISTINCT supplier.supplierID, supplier.supplierNumber, supplier.supplierName, " +
+            "supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email, " +
+            "contactPerson.firstName, contactPerson.lastName, contactPerson.faxNumber " +
             "FROM supplier " +
             "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
-            "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID";
+            "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID " +
+            "LEFT JOIN supplier_address ON supplier_address.supplierID = supplier.supplierID " +
+            "LEFT JOIN address ON address.addressID = supplier_address.supplierID " +
+            "LEFT JOIN website ON website.supplierID = supplier.supplierID";
 
     // TODO:
     // 1. Import and export database using .json
     // 2. Implement a connection pool
 
     private DBConnector() {
-        // Privat Construktor, to prevent instantiation
+        // Privat Constructor, to prevent instantiation
     }
 
     public static DBConnector getINSTANCE() {
