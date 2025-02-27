@@ -10,6 +10,14 @@ public class ContactPersonDTO {
     private String phoneNumber;
     private String faxNumber;
 
+    public ContactPersonDTO() {}
+    
+    public ContactPersonDTO(int contactPersonID, String lastName) {
+
+        this.contactPersonID = contactPersonID;
+        this.lastName = lastName;
+    }
+
     public int getContactPersonID() {
         return contactPersonID;
     }

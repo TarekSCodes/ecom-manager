@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import io.github.tarekscodes.models.ContactPersonDTO;
 import io.github.tarekscodes.models.SupplierDTO;
 
 public class DBConnector {
@@ -18,12 +19,12 @@ public class DBConnector {
     private static final String BASE_SUPPLIER_QUERY =
             "SELECT DISTINCT supplier.supplierID, supplier.supplierNumber, supplier.supplierName, " +
             "supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email, " +
-            "contactPerson.firstName, contactPerson.lastName, contactPerson.faxNumber " +
+            "contactPerson.firstName, contactPerson.lastName, contactPerson.faxNumber, contactPerson.contactPersonID " +
             "FROM supplier " +
             "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
             "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID " +
             "LEFT JOIN supplier_address ON supplier_address.supplierID = supplier.supplierID " +
-            "LEFT JOIN address ON address.addressID = supplier_address.supplierID " +
+            "LEFT JOIN address ON address.addressID = supplier_address.addressID " +
             "LEFT JOIN website ON website.supplierID = supplier.supplierID";
 
     // TODO:
@@ -129,7 +130,8 @@ public class DBConnector {
             try (ResultSet rs = pstmt.executeQuery()) {
             
                 while (rs.next()) {
-    
+
+                    //
                     SupplierDTO supplier = new SupplierDTO(
                         rs.getInt("supplierID"),
                         rs.getString("supplierName"),
@@ -138,8 +140,19 @@ public class DBConnector {
                         rs.getString("supplierStatus")
                     );
                     supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
-    
-                    // Prevent output of "null" if no data is entered
+                    
+                    // create the ContactPerson Object
+                    ContactPersonDTO person = new ContactPersonDTO(
+                        rs.getInt("contactPersonID"),
+                        rs.getString("lastName")
+                        );
+                    person.setFirstName(rs.getString("firstName"));
+                    person.setEmail(rs.getString("email"));
+                    person.setPhonePrefix(rs.getString("phonePrefix"));            
+                    person.setPhoneNumber(rs.getString("phoneNumber"));
+                    person.setFaxNumber(rs.getString("faxNumber"));
+
+
                     if (supplier.getFirstContactPhoneNumber().contains("null")) {
                         supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
                     }
