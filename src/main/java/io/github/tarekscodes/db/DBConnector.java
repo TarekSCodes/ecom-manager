@@ -12,19 +12,17 @@ import java.util.List;
 
 import io.github.tarekscodes.models.ContactPersonDTO;
 import io.github.tarekscodes.models.SupplierDTO;
+import static io.github.tarekscodes.utils.DTOUtils.sanitizeString;
 
 public class DBConnector {
 
     private static DBConnector INSTANCE;
     private static final String BASE_SUPPLIER_QUERY =
             "SELECT DISTINCT supplier.supplierID, supplier.supplierNumber, supplier.supplierName, " +
-            "supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email, " +
-            "contactPerson.firstName, contactPerson.lastName, contactPerson.faxNumber, contactPerson.contactPersonID " +
+            "supplier.supplierStatus, contactPerson.phonePrefix, contactPerson.phoneNumber, contactPerson.email " +
             "FROM supplier " +
             "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
             "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID " +
-            "LEFT JOIN supplier_address ON supplier_address.supplierID = supplier.supplierID " +
-            "LEFT JOIN address ON address.addressID = supplier_address.addressID " +
             "LEFT JOIN website ON website.supplierID = supplier.supplierID";
 
     // TODO:
@@ -108,7 +106,7 @@ public class DBConnector {
     }
 
     /**
-     * Creates a list of SupplierDTO objects from the result set of a SQL query.
+     * Creates a list of SupplierDTO objects from the result set of a search-based SQL query.
      *
      * @param sqlQuery The SQL query to be executed.
      * @param searchValues The list of values to be set in the prepared statement.
@@ -131,7 +129,6 @@ public class DBConnector {
             
                 while (rs.next()) {
 
-                    //
                     SupplierDTO supplier = new SupplierDTO(
                         rs.getInt("supplierID"),
                         rs.getString("supplierName"),
@@ -141,17 +138,6 @@ public class DBConnector {
                     );
                     supplier.setFirstContactPhoneNumber(rs.getString("phonePrefix") + " " + rs.getString("phoneNumber"));
                     
-                    // create the ContactPerson Object
-                    ContactPersonDTO person = new ContactPersonDTO(
-                        rs.getInt("contactPersonID"),
-                        rs.getString("lastName")
-                        );
-                    person.setFirstName(rs.getString("firstName"));
-                    person.setEmail(rs.getString("email"));
-                    person.setPhonePrefix(rs.getString("phonePrefix"));            
-                    person.setPhoneNumber(rs.getString("phoneNumber"));
-                    person.setFaxNumber(rs.getString("faxNumber"));
-
 
                     if (supplier.getFirstContactPhoneNumber().contains("null")) {
                         supplier.setFirstContactPhoneNumber(supplier.getFirstContactPhoneNumber().replace("null", ""));
@@ -164,5 +150,46 @@ public class DBConnector {
             System.err.println("Fehler beim Abfragen der Lieferanten: " + e.getMessage());
         }
         return suppliersList;
+    }
+
+
+    /**
+     * Creates a list of ContactPersonDTO objects from the result set.
+     * 
+     * @param sqlQuery The SQL query to be executed.
+     * @return A list of ContactPersonDTO objects created from the result set.
+     * @throws SQLException If a database access error occurs or the SQL query is invalid.
+     */
+    private List<ContactPersonDTO> createContactPersonDTOFromResultSet(String sqlQuery) {
+
+        List<ContactPersonDTO> contactPersonList = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(getDBPath());
+            PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+            ) {
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+
+                    while (rs.next()) {
+
+                        ContactPersonDTO person = new ContactPersonDTO(
+                            rs.getInt("contactPersonID"),
+                            rs.getString("lastName")
+                        );
+                        person.setFirstName(sanitizeString(rs.getString("firstName")));
+                        person.setEmail(sanitizeString(rs.getString("email")));
+                        person.setPhonePrefix(sanitizeString(rs.getString("phonePrefix")));
+                        person.setPhoneNumber(sanitizeString(rs.getString("phoneNumber")));
+                        person.setFaxNumber(sanitizeString(rs.getString("faxNumber")));
+                        
+                        contactPersonList.add(person);
+                    }
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Fehler beim Abfragen der Kontakt Personen: " + e.getMessage());
+            }
+
+        return contactPersonList;
     }
 }

@@ -1,7 +1,5 @@
 package io.github.tarekscodes.models;
 
-import java.util.List;
-
 public class SupplierDTO {
 
     private int supplierID;
@@ -10,7 +8,6 @@ public class SupplierDTO {
     private String supplierStatus;
     private String firstContactPhoneNumber;
     private String firstContactEmail;
-    private List<ContactPersonDTO> contactPersons;
     
     
     public  SupplierDTO() {
