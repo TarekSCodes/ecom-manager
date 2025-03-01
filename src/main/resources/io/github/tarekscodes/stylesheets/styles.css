@@ -52,10 +52,6 @@
     min-width: 800px;
     -fx-spacing: 10;
     -fx-alignment: top-center;
-    -fx-border-color: transparent transparent #BCBABE transparent;
-    border-color: transparent transparent #BCBABE transparent;
-    -fx-border-width: 0 0 1px 0;
-    border-width: 0 0 1px 0;
 }
 
 .articleTable .supplierTable {
@@ -157,6 +153,10 @@
     -fx-text-fill: #BCBABE;
     -fx-font-size: 14px;
     font-size: 14px;
+    -fx-border-color: #BCBABE transparent transparent transparent;
+    border-color: #BCBABE transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    border-width: 1px 0 0 0;
 }
 
 /* Fonts */
