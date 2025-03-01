@@ -49,11 +49,19 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
+
+         <!-- Test Button for supplierView-->
+         <Button fx:id="supplierClearSearchFieldsButton" onAction="#switchToSupplier" mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+         <!-- Original Button
          <Button fx:id="supplierClearSearchFieldsButton" onAction="#clearSearchFields" mnemonicParsing="false" styleClass="standardButton" text="Neue Suche" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-
+         -->
+         
       </children>
    </GridPane>
    
