@@ -1,8 +1,10 @@
 package io.github.tarekscodes.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import io.github.tarekscodes.App;
 import io.github.tarekscodes.db.DBConnector;
 import io.github.tarekscodes.models.SupplierDTO;
 import javafx.collections.FXCollections;
@@ -70,6 +72,11 @@ public class SupplierSearchController {
                 supplierNumberField.requestFocus();
             }
         }
+    }
+
+    @FXML
+    protected void switchToSupplier() throws IOException {
+        App.setCenter("supplierView");
     }
 
     @FXML
@@ -146,7 +153,6 @@ public class SupplierSearchController {
      */
     private void initializeSuppliersTable() {
     
-        // initlize the table with all suppliers
         List<SupplierDTO> suppliers  = dbconnector.getAllSuppliers();
         updateSupplierTable(suppliers);
 
