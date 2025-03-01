@@ -99,7 +99,6 @@ public class SupplierSearchController {
         searchSuppliers(supplier);
     }
     
-
     /**
      * Searches for suppliers based on the provided SupplierDTO properties.
      * If all fields in the SupplierDTO are empty, the method returns without performing a search.

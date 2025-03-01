@@ -24,6 +24,12 @@ public class DBConnector {
             "LEFT JOIN supplier_contactPerson ON supplier.supplierID = supplier_contactPerson.supplierID " +
             "LEFT JOIN contactPerson ON contactPerson.contactPersonID = supplier_contactPerson.contactPersonID " +
             "LEFT JOIN website ON website.supplierID = supplier.supplierID";
+    private static final String BASE_CONTACTPERSON_QUERY =
+            "SELECT DISTINCT * " +
+            "FROM contactPerson cp " +
+            "JOIN supplier_contactPerson scp ON cp.contactPersonID = scp.contactPersonID " +
+            "JOIN supplier s ON scp.supplierID = s.supplierID" +
+            "WHERE s.supplierID = ?";
 
     // TODO:
     // 1. Import and export database using .json
@@ -151,7 +157,6 @@ public class DBConnector {
         }
         return suppliersList;
     }
-
 
     /**
      * Creates a list of ContactPersonDTO objects from the result set.
